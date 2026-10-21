@@ -2,6 +2,7 @@ create database User;
 
 use User;
 
+
 create table customer(
 c_id int,
 c_name varchar(50),
@@ -64,6 +65,10 @@ select substr(c_name, 1,1) from customer;
 select substr(c_name, 1,2) from customer;
 
 select instr(c_name, "a") as position from customer;
+
+
+
+
 
 
 
