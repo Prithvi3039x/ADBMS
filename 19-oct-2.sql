@@ -57,9 +57,56 @@ select * from employee where experience is not null;
 
 
 
+/* Aggregate functions */
+/* COUNT SUM AVG MIN MAX */
+
+select count(*) from employee ;
+select count(Eid) from employee where dept="IT";
+select min(experience) from employee;
+select max(experience) from employee;
+select sum(experience) from employee;
+
+select f_name from employee 
+where experience = (select max(experience) from employee);
+
+select * from employee;
+
+select dept, count(*) as emp_count
+from employee group by dept;
+
+select role, count(*) as emp_count
+from employee group by role;
+
+select gender, count(*) as emp_count
+from employee group by gender;
 
 
+/* HAVING clause: Each group produced by the group by clause is evaluated
+by the having clause and if the result is true the row is included in the result set
+the having clause was added to sql because the where keyword cannot be used with aggregate functions
+*/
+
+select dept, sum(experience) as total_exp
+from employee group by dept
+having total_exp >= 10 and total_exp <= 40;
+
+select role, sum(experience) as total_exp
+from employee group by role
+having total_exp >= 10 and total_exp <= 40;
+
+select manager_id, sum(experience) as total_exp
+from employee group by manager_id
+having total_exp >= 10 and total_exp <= 40;
+
+select dept, count(Eid) 
+from employee
+group by dept
+having count(Eid) > 2
+order by count(Eid) desc;
 
 
-
+select dept, sum(experience) as total_exp
+from employee 
+group by dept
+having total_exp >= 10 or total_exp <= 30;
 
